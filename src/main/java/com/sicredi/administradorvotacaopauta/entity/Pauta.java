@@ -9,7 +9,6 @@ import javax.persistence.Id;
 public class Pauta {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long pautaId;
     private int sessaoVotacaoTempoMinutos;
     private int qtVotosSim;

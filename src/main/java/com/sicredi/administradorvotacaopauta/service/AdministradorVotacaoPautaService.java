@@ -43,6 +43,10 @@ public class AdministradorVotacaoPautaService {
 
         Optional<Pauta> pauta = repository.findById(pautaId);
         Pauta pautaSessaoAberta = pauta.get();
+
+        if(sessaoVotacaoTempoMinutos == 0){
+            sessaoVotacaoTempoMinutos = 1;
+        }
         pautaSessaoAberta.setSessaoVotacaoTempoMinutos(sessaoVotacaoTempoMinutos);
         repository.save(pautaSessaoAberta);
         logger.info("abreSessaoVotacaoSePautaExistente: Sessão da pauta aberta com sucesso");

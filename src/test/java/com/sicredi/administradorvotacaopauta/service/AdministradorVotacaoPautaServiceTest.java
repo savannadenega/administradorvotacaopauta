@@ -25,13 +25,16 @@ class AdministradorVotacaoPautaServiceTest {
     void cadastrarNovaPauta() {
 
         administradorVotacaoPautaService.cadastrarNovaPauta(123L);
-
-        administradorVotacaoPautaService.verificaPautaExistente(123L);
+        assertTrue(administradorVotacaoPautaService.verificaPautaExistente(123L));
 
     }
 
     @Test
     void abreSessaoVotacaoSePautaExistente() {
+
+        administradorVotacaoPautaService.cadastrarNovaPauta(123L);
+        assertTrue(administradorVotacaoPautaService.abreSessaoVotacaoSePautaExistente(123L, 0));
+
     }
 
     @Test
