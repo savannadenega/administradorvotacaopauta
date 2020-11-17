@@ -22,7 +22,7 @@ public class AdministradorVotacaoPautaApi {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @PutMapping("/cadastrarNovaPauta/{pautaId}")
-    @ApiOperation(value = "Cadastra uma nova pauta")
+    @ApiOperation(value = "Cadastrar uma nova pauta")
     public ResponseEntity<Object> cadastrarNovaPauta(@PathVariable Long pautaId) {
 
         logger.info("PUT cadastrarNovaPauta - pautaId: {}", pautaId);
