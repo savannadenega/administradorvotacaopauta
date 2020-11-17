@@ -44,13 +44,18 @@ class AdministradorVotacaoPautaServiceTest {
         administradorVotacaoPautaService.receberVotoSePautaExistente(123L, "03290895017", "Sim");
 
         // resultado da api user info é random
+        // TODO implementar mock retorno API
 
     }
 
     @Test
     void contabilizarVotosRetornarResultadoVotacaoPauta() {
 
+        administradorVotacaoPautaService.cadastrarNovaPauta(123L);
+        administradorVotacaoPautaService.contabilizarVotosRetornarResultadoVotacaoPauta(123L);
 
+        // resultado da api user info é random
+        // TODO implementar mock retorno API
 
     }
 }
