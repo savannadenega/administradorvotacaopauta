@@ -18,9 +18,9 @@ public class AdministradorVotacaoPautaApi {
     private AdministradorVotacaoPautaService service;
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @PutMapping("/cadastrarNovaPauta")
+    @PutMapping("/cadastrarNovaPauta/{pautaId}")
     @ApiOperation(value = "Cadastra uma nova pauta")
-    public ResponseEntity<Object> cadastrarNovaPauta(Long pautaId) {
+    public ResponseEntity<Object> cadastrarNovaPauta(@PathVariable Long pautaId) {
 
         logger.info("PUT cadastrarNovaPauta - pautaId: {}", pautaId);
         service.cadastrarNovaPauta(pautaId);
@@ -28,9 +28,10 @@ public class AdministradorVotacaoPautaApi {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/abrirSessaoVotacaoPauta")
+    @PostMapping("/abrirSessaoVotacaoPauta/{pautaId}/{tempoSessaoVotacaoMinutos}")
     @ApiOperation(value = "Abre sessão para votação da pauta")
-    public ResponseEntity<Object> abrirSessaoVotacaoPauta(Long pautaId, int tempoSessaoVotacaoMinutos) {
+    public ResponseEntity<Object> abrirSessaoVotacaoPauta(@PathVariable Long pautaId,
+                                                          @PathVariable int tempoSessaoVotacaoMinutos) {
 
         logger.info("POST abrirSessaoVotacaoPauta - pautaId: {} - tempoSessaoVotacaoMinutos: {}", pautaId, tempoSessaoVotacaoMinutos);
         if (!service.abreSessaoVotacaoSePautaExistente(pautaId, tempoSessaoVotacaoMinutos)){
@@ -40,9 +41,9 @@ public class AdministradorVotacaoPautaApi {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/receberVotoPauta")
+    @PostMapping("/receberVotoPauta/{pautaId}/{associadoCpf}/{voto}")
     @ApiOperation(value = "Receber voto de um associado para pauta")
-    public ResponseEntity<Object> receberVotoPauta(Long pautaId, String associadoCpf, String voto) {
+    public ResponseEntity<Object> receberVotoPauta(@PathVariable Long pautaId, @PathVariable String associadoCpf, @PathVariable String voto) {
 
         logger.info("POST receberVotoPauta - pautaId: {} - voto: {} - voto: {}", pautaId, associadoCpf, voto);
 
@@ -53,9 +54,9 @@ public class AdministradorVotacaoPautaApi {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/contabilizarVotosRetornarResultadoVotacaoPauta")
+    @PostMapping("/contabilizarVotosRetornarResultadoVotacaoPauta/{pautaId}")
     @ApiOperation(value = "Contabilizar os votos e dar o resultado da votação na pauta")
-    public ResponseEntity<String> contabilizarVotosRetornarResultadoVotacaoPauta(Long pautaId) {
+    public ResponseEntity<String> contabilizarVotosRetornarResultadoVotacaoPauta(@PathVariable Long pautaId) {
 
         logger.info("POST contabilizarVotosRetornarResultadoVotacaoPauta - pautaId: {}", pautaId);
         String resultado = service.contabilizarVotosRetornarResultadoVotacaoPauta(pautaId);
