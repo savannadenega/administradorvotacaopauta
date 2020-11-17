@@ -39,9 +39,18 @@ class AdministradorVotacaoPautaServiceTest {
 
     @Test
     void receberVotoSePautaExistente() {
+
+        administradorVotacaoPautaService.cadastrarNovaPauta(123L);
+        administradorVotacaoPautaService.receberVotoSePautaExistente(123L, "03290895017", "Sim");
+
+        // resultado da api user info é random
+
     }
 
     @Test
     void contabilizarVotosRetornarResultadoVotacaoPauta() {
+
+
+
     }
 }

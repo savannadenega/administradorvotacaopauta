@@ -63,12 +63,15 @@ public class AdministradorVotacaoPautaService {
 
         Optional<Pauta> pauta = repository.findById(pautaId);
         Pauta pautaVoto = pauta.get();
-        String[] votos = pautaVoto.getCpfAssociadosJaVotaram().split(";");
-        List<String> cpfAssociadosJaVotaram = Arrays.asList(votos);
-        List<String> votoJaRegistrado = cpfAssociadosJaVotaram.stream().filter(cpf -> cpf.equalsIgnoreCase(associadoCpf)).collect(Collectors.toList());
-        if(!votoJaRegistrado.isEmpty()){
-            logger.info("receberVotoSePautaExistente: Associado já votou");
-            return false;
+
+        if(!pautaVoto.getCpfAssociadosJaVotaram().isBlank()) {
+            String[] votos = pautaVoto.getCpfAssociadosJaVotaram().split(";");
+            List<String> cpfAssociadosJaVotaram = Arrays.asList(votos);
+            List<String> votoJaRegistrado = cpfAssociadosJaVotaram.stream().filter(cpf -> cpf.equalsIgnoreCase(associadoCpf)).collect(Collectors.toList());
+            if (!votoJaRegistrado.isEmpty()) {
+                logger.info("receberVotoSePautaExistente: Associado já votou");
+                return false;
+            }
         }
 
         try {

@@ -13,7 +13,7 @@ public class Pauta {
     private int sessaoVotacaoTempoMinutos;
     private int qtVotosSim;
     private int qtVotosNao;
-    private String cpfAssociadosJaVotaram;
+    private String cpfAssociadosJaVotaram = "";
 
     public Pauta() {
     }
