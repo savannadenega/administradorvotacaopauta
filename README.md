@@ -5,6 +5,7 @@ Projeto que realiza a administração de pautas, sendo possível dar procedênci
 ## Tecnologias utilizadas
 - Java 11
 - Springboot
+- RabbitMQ
 
 ## Sugestão de versionamento para para o projeto
 

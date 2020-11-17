@@ -1,5 +1,6 @@
 package com.sicredi.administradorvotacaopauta.api;
 
+import com.sicredi.administradorvotacaopauta.producer.Producer;
 import com.sicredi.administradorvotacaopauta.service.AdministradorVotacaoPautaService;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -16,6 +17,8 @@ public class AdministradorVotacaoPautaApi {
 
     @Autowired
     private AdministradorVotacaoPautaService service;
+    @Autowired
+    private Producer producer;
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @PutMapping("/cadastrarNovaPauta/{pautaId}")
@@ -60,6 +63,8 @@ public class AdministradorVotacaoPautaApi {
 
         logger.info("POST contabilizarVotosRetornarResultadoVotacaoPauta - pautaId: {}", pautaId);
         String resultado = service.contabilizarVotosRetornarResultadoVotacaoPauta(pautaId);
+
+        producer.send("excahnge", "routingKey", resultado);
 
         return ResponseEntity.ok(resultado);
     }
