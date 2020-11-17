@@ -28,7 +28,7 @@ public class AdministradorVotacaoPautaService {
         logger.info("cadastrarNovaPauta: Pauta cadastrada com sucesso");
     }
 
-    private boolean verificaPautaExistente(String pautaId){
+    public boolean verificaPautaExistente(String pautaId){
         Optional<Pauta> pauta = repository.findById(pautaId);
         return pauta.isPresent();
     }

@@ -6,8 +6,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AdministradorVotacaoPautaServiceTest {
 
+    AdministradorVotacaoPautaService administradorVotacaoPautaService = new AdministradorVotacaoPautaService();
+
     @Test
     void cadastrarNovaPauta() {
+
+        administradorVotacaoPautaService.cadastrarNovaPauta("123");
+
+        administradorVotacaoPautaService.verificaPautaExistente("123");
+
     }
 
     @Test
