@@ -23,17 +23,18 @@ public class AdministradorVotacaoPautaService {
     private UserInfoClient userInfoClient;
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public void cadastrarNovaPauta(String pautaId) {
-        repository.save(new Pauta(pautaId));
+    public void cadastrarNovaPauta(Long pautaId) {
+        Pauta pauta = new Pauta(pautaId);
+        repository.save(pauta);
         logger.info("cadastrarNovaPauta: Pauta cadastrada com sucesso");
     }
 
-    public boolean verificaPautaExistente(String pautaId){
+    public boolean verificaPautaExistente(Long pautaId){
         Optional<Pauta> pauta = repository.findById(pautaId);
         return pauta.isPresent();
     }
 
-    public boolean abreSessaoVotacaoSePautaExistente(String pautaId, int sessaoVotacaoTempoMinutos) {
+    public boolean abreSessaoVotacaoSePautaExistente(Long pautaId, int sessaoVotacaoTempoMinutos) {
 
         if(!verificaPautaExistente(pautaId)){
             logger.info("receberVotoSePautaExistente: Pauta inexistente");
@@ -49,7 +50,7 @@ public class AdministradorVotacaoPautaService {
         return true;
     }
 
-    public boolean receberVotoSePautaExistente(String pautaId, String associadoCpf, String voto) {
+    public boolean receberVotoSePautaExistente(Long pautaId, String associadoCpf, String voto) {
 
         if(!verificaPautaExistente(pautaId)){
             logger.info("receberVotoSePautaExistente: Pauta inexistente");
@@ -89,7 +90,7 @@ public class AdministradorVotacaoPautaService {
         return true;
     }
 
-    public String contabilizarVotosRetornarResultadoVotacaoPauta(String pautaId) {
+    public String contabilizarVotosRetornarResultadoVotacaoPauta(Long pautaId) {
 
         String resultado = "Votação finalizada - Pauta: %s - Quantidade de votos Sim: %s - Quantidade de votos Não: %s";
 

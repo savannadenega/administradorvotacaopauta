@@ -20,7 +20,7 @@ public class AdministradorVotacaoPautaApi {
 
     @PutMapping("/cadastrarNovaPauta")
     @ApiOperation(value = "Cadastra uma nova pauta")
-    public ResponseEntity<Object> cadastrarNovaPauta(String pautaId) {
+    public ResponseEntity<Object> cadastrarNovaPauta(Long pautaId) {
 
         logger.info("PUT cadastrarNovaPauta - pautaId: {}", pautaId);
         service.cadastrarNovaPauta(pautaId);
@@ -30,7 +30,7 @@ public class AdministradorVotacaoPautaApi {
 
     @PostMapping("/abrirSessaoVotacaoPauta")
     @ApiOperation(value = "Abre sessão para votação da pauta")
-    public ResponseEntity<Object> abrirSessaoVotacaoPauta(String pautaId, int tempoSessaoVotacaoMinutos) {
+    public ResponseEntity<Object> abrirSessaoVotacaoPauta(Long pautaId, int tempoSessaoVotacaoMinutos) {
 
         logger.info("POST abrirSessaoVotacaoPauta - pautaId: {} - tempoSessaoVotacaoMinutos: {}", pautaId, tempoSessaoVotacaoMinutos);
         if (!service.abreSessaoVotacaoSePautaExistente(pautaId, tempoSessaoVotacaoMinutos)){
@@ -42,7 +42,7 @@ public class AdministradorVotacaoPautaApi {
 
     @PostMapping("/receberVotoPauta")
     @ApiOperation(value = "Receber voto de um associado para pauta")
-    public ResponseEntity<Object> receberVotoPauta(String pautaId, String associadoCpf, String voto) {
+    public ResponseEntity<Object> receberVotoPauta(Long pautaId, String associadoCpf, String voto) {
 
         logger.info("POST receberVotoPauta - pautaId: {} - voto: {} - voto: {}", pautaId, associadoCpf, voto);
 
@@ -55,7 +55,7 @@ public class AdministradorVotacaoPautaApi {
 
     @PostMapping("/contabilizarVotosRetornarResultadoVotacaoPauta")
     @ApiOperation(value = "Contabilizar os votos e dar o resultado da votação na pauta")
-    public ResponseEntity<String> contabilizarVotosRetornarResultadoVotacaoPauta(String pautaId) {
+    public ResponseEntity<String> contabilizarVotosRetornarResultadoVotacaoPauta(Long pautaId) {
 
         logger.info("POST contabilizarVotosRetornarResultadoVotacaoPauta - pautaId: {}", pautaId);
         String resultado = service.contabilizarVotosRetornarResultadoVotacaoPauta(pautaId);

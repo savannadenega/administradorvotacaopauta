@@ -1,13 +1,16 @@
 package com.sicredi.administradorvotacaopauta.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Pauta {
 
     @Id
-    private String pautaId;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long pautaId;
     private int sessaoVotacaoTempoMinutos;
     private int qtVotosSim;
     private int qtVotosNao;
@@ -16,11 +19,11 @@ public class Pauta {
     public Pauta() {
     }
 
-    public Pauta(String pautaId) {
+    public Pauta(Long pautaId) {
         this.pautaId = pautaId;
     }
 
-    public Pauta(String pautaId, int sessaoVotacaoTempoMinutos, int qtVotosSim, int qtVotosNao, String cpfAssociadosJaVotaram) {
+    public Pauta(Long pautaId, int sessaoVotacaoTempoMinutos, int qtVotosSim, int qtVotosNao, String cpfAssociadosJaVotaram) {
         this.pautaId = pautaId;
         this.sessaoVotacaoTempoMinutos = sessaoVotacaoTempoMinutos;
         this.qtVotosSim = qtVotosSim;
@@ -28,11 +31,11 @@ public class Pauta {
         this.cpfAssociadosJaVotaram = cpfAssociadosJaVotaram;
     }
 
-    public String getPautaId() {
+    public Long getPautaId() {
         return pautaId;
     }
 
-    public void setPautaId(String pautaId) {
+    public void setPautaId(Long pautaId) {
         this.pautaId = pautaId;
     }
 
